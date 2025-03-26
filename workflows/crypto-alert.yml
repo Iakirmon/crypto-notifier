@@ -1,0 +1,20 @@
+name: Crypto Alert Every Hour
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Co godzinę
+  workflow_dispatch:      # Ręczne uruchomienie
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Zainstaluj jq
+        run: sudo apt-get install -y jq
+
+      - name: Uruchom skrypt powiadomień
+        run: bash ./crypto_alert.sh
